@@ -2,6 +2,10 @@
 
 _start:
 
+    # only run on hart id 0
+    csrr a0, mhartid
+    bne a0, x0, finish
+
     lui t0, 0x10010
     la t1, string
 
