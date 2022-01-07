@@ -3,30 +3,16 @@
 _start:
 
     lui t0, 0x10010
+    la t1, string
 
-    andi t1, t1, 0
-    addi t1, t1, 72
-    sw t1, 0(t0)
-
-    andi t1, t1, 0
-    addi t1, t1, 101
-    sw t1, 0(t0)
-
-    andi t1, t1, 0
-    addi t1, t1, 108
-    sw t1, 0(t0)
-
-    andi t1, t1, 0
-    addi t1, t1, 108
-    sw t1, 0(t0)
-
-    andi t1, t1, 0
-    addi t1, t1, 111
-    sw t1, 0(t0)
-
-    andi t1, t1, 0
-    addi t1, t1, 10
-    sw t1, 0(t0)
+loop:
+    lb t2, 0(t1)
+    beq t2, x0, finish
+    sw t2, 0(t0)
+    addi t1, t1, 1
+    j loop
 
 finish:
-    beq t1, t1, finish
+    j finish
+
+string: .asciz "Hello, world!\n";
