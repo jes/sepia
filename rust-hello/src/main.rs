@@ -31,7 +31,7 @@ macro_rules! println
 #[no_mangle]
 extern "C" fn kinit() {
     println!("Hello, world!");
-    abort();
+    panic!("Uh-oh");
 }
 #[no_mangle]
 extern "C" fn kinit_hart(_hartid: usize) {
@@ -40,8 +40,8 @@ extern "C" fn kinit_hart(_hartid: usize) {
 }
 
 #[panic_handler]
-fn panic(_info: &core::panic::PanicInfo) -> ! {
-	println!("Aborting");
+fn panic(info: &core::panic::PanicInfo) -> ! {
+	println!("Kernel panic: {}", info);
 	abort();
 }
 
