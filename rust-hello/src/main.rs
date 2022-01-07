@@ -31,6 +31,7 @@ macro_rules! println
 #[no_mangle]
 extern "C" fn kinit() {
     println!("Hello, world!");
+    abort();
 }
 #[no_mangle]
 extern "C" fn kinit_hart(_hartid: usize) {
